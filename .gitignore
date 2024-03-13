@@ -3,3 +3,14 @@
 
 #pyc files
 /.idea
+
+#other Files
+/data/dataset/anger
+/data/dataset/contempt
+/data/dataset/disgust
+/data/dataset/fear
+/data/dataset/happy
+/data/dataset/neutral
+/data/dataset/sad
+/data/dataset/surprise
+/data/dataset/new_labels.csv
