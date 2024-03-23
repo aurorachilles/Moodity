@@ -1,3 +1,11 @@
+#
+#   This is an old test folder that was created for implementing an initial idea
+#   A better implementation was found, therefore this folder was rendered useless.
+#   Not involved in the project in any way
+#
+#
+#
+
 import sys
 import os
 import pandas as pd
