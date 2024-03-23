@@ -6,14 +6,15 @@ from tqdm import tqdm
 
 
 def img_to_arr_grey(data: pandas.DataFrame) -> [np.array, np.array]:
-    x_train = np.empty((0, 96, 96), dtype=int)
+    x_ = np.empty((0, 96, 96), dtype=int)
+    y_ = np.empty((0,), dtype=str)
     for i in tqdm(range(data.shape[0])):
         path = "./dataset/" + data.iloc[i, 0]
         img = cv2.imread(path)
         grey_s = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        x_train = np.append(x_train, [grey_s], axis=0)
-    y_train = np.full(shape=(data.shape[0],), fill_value=data.iloc[0,1])
-    return [x_train,y_train]
+        x_ = np.append(x_, [grey_s], axis=0)
+        y_ = np.append(y_, data.iloc[i, 1])
+    return [x_,y_]
 
 def main():
     # importing my data
@@ -28,6 +29,15 @@ def main():
     print("Shape of y_train: ", y_train.shape)
     print("Shape of X_test: ", X_test.shape)
     print("Shape of y_test: ", y_test.shape)
+
+    y_train_resize = y_train.reshape(-1, 1, 1)
+    y_test_resize = y_test.reshape(-1, 1, 1)
+
+    np.savez("./dataset/npz_data/X_train.npz", X_train)
+    np.savez("./dataset/npz_data/y_train.npz", y_train)
+    np.savez("./dataset/npz_data/X_test.npz", X_test)
+    np.savez("./dataset/npz_data/y_test.npz", y_test)
+
 
 
 if __name__ == "__main__":
